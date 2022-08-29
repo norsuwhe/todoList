@@ -1,4 +1,5 @@
-import TodoInput from "./components/TodoInput/TodoInput"
+import TodoForm from "./components/TodoForm/TodoForm";
+import TodoList from "./components/TodoList/TodoList";
 import { useAppSelector } from "./redux/hooks"
 
 const App = () => {
@@ -6,7 +7,8 @@ const App = () => {
   console.log(todos);
   return (
     <>
-      <TodoInput />
+      <TodoForm />
+      <TodoList />
     </>
   )
 }
