@@ -3,9 +3,9 @@ import { useState } from "react"
 import { useAppDispatch } from "../../redux/hooks"
 import { addTodo } from "../../redux/slices/todoSlice"
 import { ITodo } from "../../utils/interfaces/ITodo"
+import { TodoImportanceButtons } from "./TodoImportanceButtonsList"
 
-
-const TodoInput = () => {
+const TodoForm = () => {
     const dispatch = useAppDispatch()
     const newTodoInitialState: ITodo = {
         todo: '',
@@ -14,7 +14,7 @@ const TodoInput = () => {
         completionStatus: false,
         isEditing: false
     }
-    const [newTodo, setNewTodo] = useState<ITodo>(newTodoInitialState);
+    const [newTodo, setNewTodo] = useState(newTodoInitialState);
     const handleTodoTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewTodo({ ...newTodo, todo: e.target.value })
     }
@@ -27,6 +27,9 @@ const TodoInput = () => {
             importance: newTodo.importance,
         })
     }
+    const handleTodoImportanceChange = (id: string) => {
+        setNewTodo({ ...newTodo, importance: id })
+    }
 
     return (
         <form onSubmit={handleTodoSubmit}>
@@ -37,8 +40,25 @@ const TodoInput = () => {
                 value={newTodo.todo}
                 onChange={handleTodoTextChange}
             />
+            <div>
+                {TodoImportanceButtons.map((button) => {
+                    return (
+                        <div key={button.id}>
+                            <input
+                                type="radio"
+                                id={button.id}
+                                name="todoImportance"
+                                defaultChecked={button.defaultChecked}
+                                onClick={() => handleTodoImportanceChange(button.id)}
+                            />
+                        </div>
+                    )
+                })
+
+                }
+            </div>
         </form>
     )
 }
 
-export default TodoInput
+export default TodoForm
