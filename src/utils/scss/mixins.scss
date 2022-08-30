@@ -1,0 +1,24 @@
+@mixin common {
+    background: #ebedef;
+    color: #616061;
+}
+
+@mixin rare {
+    background: #0085ff;
+    color: white;
+}
+
+@mixin epic {
+    background: #bd00ff;
+    color: white;
+}
+
+@mixin all {
+    background: #ff8a00;
+    color: white;
+}
+
+@mixin completed {
+    background: #5e5e5e;
+    color: #b1b1b1;
+}

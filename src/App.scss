@@ -1,0 +1,24 @@
+@import './utils/scss/variables.scss';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  background: $color-background-dark;
+  font-family: sans-serif;
+}
+
+.app {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 800px;
+}

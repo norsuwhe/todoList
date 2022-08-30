@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../redux/hooks"
 import { addTodo } from "../../redux/slices/todoSlice"
 import { ITodo } from "../../utils/interfaces/ITodo"
 import { TodoImportanceButtons } from "./TodoImportanceButtonsList"
+import './TodoForm.scss';
 
 const TodoForm = () => {
     const dispatch = useAppDispatch()
@@ -27,37 +28,39 @@ const TodoForm = () => {
             importance: newTodo.importance,
         })
     }
+    const isRadioButtonSelected = (value: string) => newTodo.importance === value;
     const handleTodoImportanceChange = (id: string) => {
         setNewTodo({ ...newTodo, importance: id })
     }
-
     return (
-        <form onSubmit={handleTodoSubmit}>
+        <form className="todo-form" onSubmit={handleTodoSubmit}>
             <input
                 type="text"
                 placeholder="Enter a todo..."
                 autoFocus={true}
                 value={newTodo.todo}
                 onChange={handleTodoTextChange}
+                className="todo-form__text-input"
             />
-            <div>
+            <div className="todo-form__importance-group">
                 {TodoImportanceButtons.map(button => {
                     return (
                         <div key={button.id}>
                             <input
+                                className="todo-form__radio"
                                 type="radio"
+                                value={button.id}
                                 id={button.id}
                                 name="todoImportance"
-                                defaultChecked={button.defaultChecked}
-                                onClick={() => handleTodoImportanceChange(button.id)}
+                                checked={isRadioButtonSelected(button.id)}
+                                onChange={() => handleTodoImportanceChange(button.id)}
                             />
-                            <label htmlFor={button.id}>
+                            <label htmlFor={button.id} className={`todo-form__importance-button todo-form__importance-button_${button.id}`}>
                                 {button.name}
                             </label>
                         </div>
                     )
                 })
-
                 }
             </div>
         </form>
