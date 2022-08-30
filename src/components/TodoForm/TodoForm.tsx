@@ -41,7 +41,7 @@ const TodoForm = () => {
                 onChange={handleTodoTextChange}
             />
             <div>
-                {TodoImportanceButtons.map((button) => {
+                {TodoImportanceButtons.map(button => {
                     return (
                         <div key={button.id}>
                             <input
@@ -51,6 +51,9 @@ const TodoForm = () => {
                                 defaultChecked={button.defaultChecked}
                                 onClick={() => handleTodoImportanceChange(button.id)}
                             />
+                            <label htmlFor={button.id}>
+                                {button.name}
+                            </label>
                         </div>
                     )
                 })
