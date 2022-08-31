@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ITodo } from '../../utils/interfaces/ITodo'
 
+interface IEditedTodo {
+    editedText: string,
+    id: string
+}
+
 const initialState: ITodo[] = [];
 
 const todoSlice = createSlice({
@@ -19,9 +24,19 @@ const todoSlice = createSlice({
         },
         deleteCompletedTodos: (state) => {
             return state.filter(todo => !todo.completionStatus)
+        },
+        editStateChange: (state, action: PayloadAction<string | null>) => {
+            return state.forEach(todo => {
+                if (todo.id === action.payload) return todo.isEditing = true
+                return todo.isEditing = false;
+            })
+        },
+        editTodo: (state, action: PayloadAction<IEditedTodo>) => {
+            const index = state.findIndex(todo => todo.id === action.payload.id)
+            state[index].todo = action.payload.editedText
         }
     }
 })
 
-export const { addTodo, deleteTodo, completionStatusChange, deleteCompletedTodos } = todoSlice.actions;
+export const { addTodo, deleteTodo, completionStatusChange, deleteCompletedTodos, editStateChange, editTodo } = todoSlice.actions;
 export default todoSlice.reducer
