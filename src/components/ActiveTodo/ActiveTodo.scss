@@ -1,0 +1,49 @@
+@import '../../utils/scss/mixins.scss';
+
+.active-todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 7px;
+    font-size: 24px;
+    min-height: 53px;
+    margin-bottom: 6px;
+
+
+    &__text {
+        margin: 16px 0;
+        width: 90%;
+        word-break: break-word;
+    }
+
+    &__manage {
+        display: flex;
+        flex-direction: row;
+        margin: 16px 16px;
+        gap: 8px;
+    }
+
+    &_common {
+        @include common;
+    }
+
+    &_rare {
+        @include rare;
+    }
+
+    &_epic {
+        @include epic;
+    }
+
+    &__icon {
+        width: 17px;
+
+        &_white {
+            filter: invert(99%) sepia(1%) saturate(2%) hue-rotate(152deg) brightness(109%) contrast(100%);
+        }
+
+        &_grey {
+            filter: invert(36%) sepia(7%) saturate(354%) hue-rotate(169deg) brightness(96%) contrast(91%);
+        }
+    }
+}
