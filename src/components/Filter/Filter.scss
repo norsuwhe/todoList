@@ -1,13 +1,13 @@
 @import '../../utils/scss/mixins.scss';
 
+
 .filter-group {
     display: flex;
     justify-content: space-between;
 }
 
 .filter-button {
-    background: #767676;
-    color: white;
+    @include common;
     display: inline-block;
     border: none;
     padding: 5px;
@@ -32,7 +32,6 @@
 
     &__delete-completed {
         margin-right: 0;
-        background: #cd0062;
-        color: white;
+        @include common;
     }
 }
