@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useAppDispatch } from "../../redux/hooks"
 import { addTodo } from "../../redux/slices/todoSlice"
 import { ITodo } from "../../utils/interfaces/ITodo"
@@ -31,10 +31,17 @@ const TodoForm = () => {
     const isRadioButtonSelected = (value: string) => newTodo.importance === value;
     const handleTodoImportanceChange = (id: string) => {
         setNewTodo({ ...newTodo, importance: id })
+        focusInputText();
     }
+    const todoInputRef = useRef<HTMLInputElement>(null)
+    const focusInputText = () => {
+        todoInputRef.current!.focus();
+    }
+
     return (
         <form className="todo-form" onSubmit={handleTodoSubmit}>
             <input
+                ref={todoInputRef}
                 type="text"
                 placeholder="Enter a todo..."
                 autoFocus={true}

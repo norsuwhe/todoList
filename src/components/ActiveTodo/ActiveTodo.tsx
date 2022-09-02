@@ -1,4 +1,3 @@
-
 import { useAppDispatch } from "../../redux/hooks"
 import { completionStatusChange, deleteTodo, editStateChange, editTodo } from "../../redux/slices/todoSlice"
 import { ITodo } from "../../utils/interfaces/ITodo"
@@ -34,12 +33,16 @@ const ActiveTodo = ({ id, todo, importance, isEditing }: ITodo) => {
         if (importance === 'epic') return 'active-todo_epic'
         return 'active-todo_common'
     }
+    console.log('render');
     return (
         isEditing
             ?
-            <form onSubmit={handleEditTodo}>
+            <form className="active-todo__editing-form" onSubmit={handleEditTodo}>
+                <button className="active-todo__editing-submit" type="submit">
+                    <img className="active-todo__icon active-todo__icon_grey active-todo__manage" src={CheckIcon} alt="" />
+                </button>
                 <textarea
-                    className="active-todo__editing"
+                    className="active-todo__editing-textarea"
                     onChange={handleEditedTextChange}
                     defaultValue={todo}
                 />
