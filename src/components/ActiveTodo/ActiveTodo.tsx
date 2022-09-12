@@ -33,7 +33,6 @@ const ActiveTodo = ({ id, todo, importance, isEditing }: ITodo) => {
         if (importance === 'epic') return 'active-todo_epic'
         return 'active-todo_common'
     }
-    console.log('render');
     return (
         isEditing
             ?

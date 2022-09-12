@@ -7,7 +7,7 @@
 }
 
 .filter-button {
-    @include common;
+    @include inactive;
     display: inline-block;
     border: none;
     padding: 5px;
@@ -32,6 +32,6 @@
 
     &__delete-completed {
         margin-right: 0;
-        @include common;
+        @include delete-completed;
     }
 }
